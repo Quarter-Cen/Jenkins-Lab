@@ -1,11 +1,14 @@
-FROM nginx:latest
-    COPY . /usr/share/nginx/html
+FROM node:18-alpine AS builder
 
-FROM node:22
-    RUN mkdir -p /src/app
-    WORKDIR /usr/src/app
-    COPY package.json /usr/src/app/
-    RUN npm install
-    COPY . /src/app
-    EXPOSE 3000
-    CMD ["npm","start"]
+WORKDIR /app
+
+
+COPY package.json package-lock.json ./
+
+
+RUN npm ci --omit=dev
+
+COPY . .
+
+RUN npm run build && npm prune --omit=dev
+
