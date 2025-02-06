@@ -9,5 +9,6 @@
          source: build
          build:
             path: ~/66022365 #path ที่เก็บไฟล์ sourcecode 
+         command: docker build -t nextjs .
          state: present
          force_source: true
