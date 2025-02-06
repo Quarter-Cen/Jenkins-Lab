@@ -3,12 +3,11 @@
   gather_facts: false
   remote_user: root
   tasks:
-    - name: Building Docker Image
-      docker_image:
-         name: 66022365:latest #docker image name
-         source: build
-         build:
-            path: ~/66022365 #path ที่เก็บไฟล์ sourcecode 
-         command: docker build -t nextjs .
-         state: present
-         force_source: true
+    - name: Build and tag Docker image
+      community.docker.docker_image:
+        name: 66022365:latest
+        source: build
+        build:
+          path: ~/66022365
+        state: present
+        force_source: true
