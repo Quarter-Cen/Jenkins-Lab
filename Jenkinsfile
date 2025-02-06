@@ -1,8 +1,5 @@
 pipeline {
     agent any
-    tools {
-        nodejs 'NodeJS'
-    }
     stages {      
         stage("Copy file to Docker server"){
             steps {
